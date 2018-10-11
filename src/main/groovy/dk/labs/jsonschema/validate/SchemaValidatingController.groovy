@@ -43,12 +43,11 @@ class SchemaValidatingController extends RequestBodyAdviceAdapter {
 
         Json.Schema schema = Json.schema(jsonSchemaResource.getURI())
 
-        Json incomingJson = Json.make(body as LinkedHashMap)
+        Json incomingJson = Json.make(body)
 
         def validationResult = schema.validate(incomingJson)
         if(!validationResult.at('ok')) {
-            def errors = validationResult.at('errors').asList()
-            throw new JsonSchemaValidationFailedException(validationResult.at('errors').toString())
+            throw new JsonSchemaValidationFailedException(validationResult.at('errors').asList())
         }
 
         return super.afterBodyRead(body, inputMessage, parameter, targetType, converterType)
@@ -61,7 +60,7 @@ class SchemaValidatingController extends RequestBodyAdviceAdapter {
 
     @ExceptionHandler(JsonSchemaValidationFailedException)
     final ResponseEntity<?> handleUserNotFoundException(JsonSchemaValidationFailedException ex, WebRequest request) {
-        new ResponseEntity<>([errors: ex.message], HttpStatus.BAD_REQUEST)
+        new ResponseEntity<>([errors: ex.errors], HttpStatus.BAD_REQUEST)
     }
 
 }

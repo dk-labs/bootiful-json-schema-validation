@@ -2,7 +2,9 @@ package dk.labs.jsonschema.validate
 
 class JsonSchemaValidationFailedException extends RuntimeException {
 
-    JsonSchemaValidationFailedException(String msg) {
-        super(msg)
+    def errors
+
+    JsonSchemaValidationFailedException(List<String> errors) {
+        this.errors = errors
     }
 }
