@@ -1,0 +1,439 @@
+{
+    "entityId": {
+        "title": "label.entity-id",
+        "description": "tooltip.entity-id",
+        "type": "string"
+    },
+    "serviceProviderName": {
+        "title": "label.service-provider-name",
+        "description": "tooltip.service-provider-name",
+        "type": "string"
+    },
+    "serviceEnabled": {
+        "title": "label.enable-this-service-upon-saving",
+        "description": "tooltip.enable-this-service-upon-saving",
+        "type": "boolean"
+    },
+    "organization": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "title": "label.organization-name",
+                "description": "tooltip.organization-name",
+                "type": "string"
+            },
+            "displayName": {
+                "title": "label.organization-display-name",
+                "description": "tooltip.organization-display-name",
+                "type": "string"
+            },
+            "url": {
+                "title": "label.organization-display-name",
+                "description": "tooltip.organization-display-name",
+                "type": "string"
+            }
+        },
+        "dependencies": {
+            "name": [
+                "displayName",
+                "url"
+            ],
+            "displayName": [
+                "name",
+                "url"
+            ],
+            "url": [
+                "name",
+                "displayName"
+            ]
+        }
+    },
+    "contacts": {
+        "title": "label.contact-information",
+        "description": "tooltip.contact-information",
+        "type": "array",
+        "items": {
+            "$ref": "#/definitions/Contact"
+        }
+    },
+    "mdui": {
+        "type": "object",
+        "properties": {
+            "displayName": {
+                "title": "label.display-name",
+                "description": "tooltip.mdui-display-name",
+                "type": "string"
+            },
+            "informationUrl": {
+                "title": "label.information-url",
+                "description": "tooltip.mdui-information-url",
+                "type": "string"
+            },
+            "privacyStatementUrl": {
+                "title": "label.privacy-statement-url",
+                "description": "tooltip.mdui-privacy-statement-url",
+                "type": "string"
+            },
+            "description": {
+                "title": "label.description",
+                "description": "tooltip.mdui-description",
+                "type": "string"
+            },
+            "logoUrl": {
+                "title": "label.logo-url",
+                "description": "tooltip.mdui-logo-url",
+                "type": "string"
+            },
+            "logoHeight": {
+                "title": "label.logo-height",
+                "description": "tooltip.mdui-logo-height",
+                "min": 0,
+                "type": "integer"
+            },
+            "logoWidth": {
+                "title": "label.logo-width",
+                "description": "tooltip.mdui-logo-width",
+                "min": 0,
+                "type": "integer"
+            }
+        }
+    },
+    "securityInfo": {
+        "type": "object",
+        "properties": {
+            "x509CertificateAvailable": {
+                "title": "label.is-there-a-x509-certificate",
+                "description": "tooltip.is-there-a-x509-certificate",
+                "type": "boolean",
+                "default": false
+            },
+            "authenticationRequestsSigned": {
+                "title": "label.authentication-requests-signed",
+                "description": "tooltip.authentication-requests-signed",
+                "type": "boolean",
+                "default": false
+            },
+            "wantAssertionsSigned": {
+                "title": "label.want-assertions-signed",
+                "description": "tooltip.want-assertions-signed",
+                "type": "boolean",
+                "default": false
+            },
+            "x509Certificates": {
+                "title": "label.x509-certificates",
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/Certificate"
+                }
+            }
+        }
+    },
+    "assertionConsumerServices": {
+        "title": "label.assertion-consumer-service-endpoints",
+        "description": "",
+        "type": "array",
+        "items": {
+            "$ref": "#/definitions/AssertionConsumerService"
+        }
+    },
+    "serviceProviderSsoDescriptor": {
+        "type": "object",
+        "properties": {
+            "protocolSupportEnum": {
+                "title": "label.protocol-support-enumeration",
+                "description": "tooltip.protocol-support-enumeration",
+                "type": "string",
+                "placeholder": "label.select-protocol",
+                "oneOf": [
+                    {
+                        "enum": [
+                            "SAML 2"
+                        ],
+                        "description": "SAML 2"
+                    },
+                    {
+                        "enum": [
+                            "SAML 1.1"
+                        ],
+                        "description": "SAML 1.1"
+                    }
+                ]
+            }
+        },
+        "nameIdFormats": {
+            "$ref": "#/definitions/NameIdFormatList"
+        }
+    },
+    "logoutEndpoints": {
+        "title": "label.logout-endpoints",
+        "description": "tooltip.logout-endpoints",
+        "type": "array",
+        "items": {
+            "$ref": "#/definitions/LogoutEndpoint"
+        }
+    },
+    "relyingPartyOverrides": {
+        "type": "object",
+        "properties": {
+            "signAssertion": {
+                "title": "label.sign-the-assertion",
+                "description": "tooltip.sign-assertion",
+                "type": "boolean",
+                "default": false
+            },
+            "dontSignResponse": {
+                "title": "label.dont-sign-the-response",
+                "description": "tooltip.dont-sign-response",
+                "type": "boolean",
+                "default": false
+            },
+            "turnOffEncryption": {
+                "title": "label.turn-off-encryption-of-response",
+                "description": "tooltip.turn-off-encryption",
+                "type": "boolean",
+                "default": false
+            },
+            "useSha": {
+                "title": "label.use-sha1-signing-algorithm",
+                "description": "tooltip.usa-sha-algorithm",
+                "type": "boolean",
+                "default": false
+            },
+            "ignoreAuthenticationMethod": {
+                "title": "label.ignore-any-sp-requested-authentication-method",
+                "description": "tooltip.ignore-auth-method",
+                "type": "boolean",
+                "default": false
+            },
+            "forceAuthn": {
+                "title": "label.force-authn",
+                "description": "tooltip.force-authn",
+                "type": "boolean",
+                "default": false
+            },
+            "omitNotBefore": {
+                "title": "label.omit-not-before-condition",
+                "type": "boolean",
+                "description": "tooltip.omit-not-before-condition",
+                "default": false
+            },
+            "responderId": {
+                "title": "label.responder-id",
+                "description": "tooltip.responder-id",
+                "type": "string"
+            },
+            "nameIdFormats": {
+                "$ref": "#/definitions/NameIdFormatList"
+            },
+            "authenticationMethods": {
+                "$ref": "#/definitions/AuthenticationMethodList"
+            }
+        }
+    },
+    "attributeRelease": {
+        "type": "array",
+        "description": "Attribute release table - select the attributes you want to release (default unchecked)",
+        "widget": {
+            "id": "checklist",
+            "dataUrl": "/customAttributes"
+        },
+        "items": {
+            "type": "string"
+        }
+    },
+    "definitions": {
+        "Contact": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "title": "label.contact-name",
+                    "description": "tooltip.contact-name",
+                    "type": "string"
+                },
+                "type": {
+                    "title": "label.contact-type",
+                    "description": "tooltip.contact-type",
+                    "type": "string",
+                    "oneOf": [
+                        {
+                            "enum": [
+                                "support"
+                            ],
+                            "description": "value.support" 
+                        },
+                        {
+                            "enum": [
+                                "technical"
+                            ],
+                            "description": "value.technical"
+                        },
+                        {
+                            "enum": [
+                                "administrative"
+                            ],
+                            "description": "value.administrative"
+                        },
+                        {
+                            "enum": [
+                                "other"
+                            ],
+                            "description": "value.other"
+                        }
+                    ]
+                },
+                "emailAddress": {
+                    "title": "label.contact-email-address",
+                    "description": "tooltip.contact-email",
+                    "type": "string",
+                    "pattern": "^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$"
+                }
+            }
+        },
+        "Certificate": {
+            "name": {
+                "title": "label.certificate-name-display-only",
+                "description": "tooltip.certificate-name",
+                "type": "string"
+            },
+            "type": {
+                "title": "label.type",
+                "description": "tooltip.certificate-type",
+                "type": "string",
+                "oneOf": [
+                    {
+                        "enum": [
+                            "signing"
+                        ],
+                        "description": "value.signing"
+                    },
+                    {
+                        "enum": [
+                            "encryption"
+                        ],
+                        "description": "value.encryption"
+                    },
+                    {
+                        "enum": [
+                            "both"
+                        ],
+                        "description": "value.both"
+                    }
+                ],
+                "default": "both"
+            },
+            "value": {
+                "title": "label.certificate",
+                "description": "tooltip.certificate",
+                "type": "string"
+            }
+        },
+        "AssertionConsumerService": {
+            "type": "object",
+            "properties": {
+                "locationUrl": {
+                    "title": "label.assertion-consumer-services-location",
+                    "description": "tooltip.assertion-consumer-service-location",
+                    "type": "string",
+                    "widget": {
+                        "id": "string",
+                        "help": "message.valid-url"
+                    }
+                },
+                "binding": {
+                    "title": "label.assertion-consumer-service-location-binding",
+                    "description": "tooltip.assertion-consumer-service-location-binding",
+                    "type": "string",
+                    "oneOf": [
+                        {
+                            "enum": [
+                                "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+                            ],
+                            "description": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+                        },
+                        {
+                            "enum": [
+                                "urn:oasis:names:tc:SAML:1.0:profiles:browser-post"
+                            ],
+                            "description": "urn:oasis:names:tc:SAML:1.0:profiles:browser-post"
+                        }
+                    ]
+                },
+                "makeDefault": {
+                    "title": "label.mark-as-default",
+                    "description": "tooltip.mark-as-default",
+                    "type": "boolean"
+                }
+            }
+        },
+        "NameIdFormatList": {
+            "title": "label.nameid-format-to-send",
+            "placeholder": "label.nameid-format",
+            "description": "tooltip.nameid-format",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "widget": "datalist",
+                "data": [
+                    "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
+                    "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
+                    "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
+                    "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+                ]
+            },
+            "default": null
+        },
+        "AuthenticationMethodList": {
+            "title": "label.authentication-methods-to-use",
+            "description": "tooltip.authentication-methods-to-use",
+            "type": "array",
+            "placeholder": "label.authentication-method",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "title": "label.authentication-method",
+                "widget": {
+                    "id": "datalist",
+                    "data": [
+                        "https://refeds.org/profile/mfa",
+                        "urn:oasis:names:tc:SAML:2.0:ac:classes:TimeSyncToken",
+                        "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport"
+                    ]
+                }
+            },
+            "default": null
+        },
+        "LogoutEndpoint": {
+            "title": "label.new-endpoint",
+            "description": "tooltip.new-endpoint",
+            "type": "object",
+            "properties": {
+                "url": {
+                    "title": "label.url",
+                    "description": "tooltip.url",
+                    "type": "string"
+                },
+                "bindingType": {
+                    "title": "label.binding-type",
+                    "description": "tooltip.binding-type",
+                    "type": "string",
+                    "oneOf": [
+                        {
+                            "enum": [
+                                "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+                            ],
+                            "description": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+                        },
+                        {
+                            "enum": [
+                                "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+                            ],
+                            "description": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+                        }
+                    ]
+                    
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {},
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "name",
+    "id",
+    "isHappy",
+    "interests"
+  ],
+  "properties": {
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "The Name Schema",
+      "default": "",
+      "examples": [
+        "My name"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "The Id Schema",
+      "default": 0,
+      "examples": [
+        42
+      ]
+    },
+    "isHappy": {
+      "$id": "#/properties/isHappy",
+      "type": "boolean",
+      "title": "The Ishappy Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "interests": {
+      "$id": "#/properties/interests",
+      "type": "array",
+      "title": "The Interests Schema",
+      "items": {
+        "$id": "#/properties/interests/items",
+        "type": "string",
+        "title": "The Items Schema",
+        "default": "",
+        "examples": [
+          "a",
+          "b"
+        ],
+        "pattern": "^(.*)$"
+      }
+    }
+  }
+}
