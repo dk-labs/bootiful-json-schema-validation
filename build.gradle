@@ -27,7 +27,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.codehaus.groovy:groovy'
     implementation 'org.codehaus.groovy:groovy-json'
+    
+    //mjson lib
     implementation 'org.sharegov:mjson:1.4.1'
+    
+    //json-schema-validator-lib
+    implementation 'com.github.java-json-tools:json-schema-validator:2.2.10'
 }
 
 task wrapper(type: Wrapper) {
